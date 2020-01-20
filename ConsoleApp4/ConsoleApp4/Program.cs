@@ -35,6 +35,7 @@ namespace ConsoleApp4
 
             string[] ArrayMenu = {plat1, plat2, plat3, plat4, plat5};
             double[] ArrayPreu = {preu1, preu2, preu3, preu4, preu5};
+            int[] ArrayMoneda = {bitllet5, bitllet10, bitllet20, bitllet50, bitllet100, bitllet200, bitllet500 };
 
             //Fase 2
             //Introduïr plats del menú i el seu preu
@@ -79,6 +80,7 @@ namespace ConsoleApp4
             //Mirem si els plats escollits estàn al Menú i si hi són, calculem cost de la Nota
             double nota = 0.0;
             bool trobat = false;
+            int quants = 0;
 
             foreach (Tria p in listTria)
             {
@@ -98,9 +100,24 @@ namespace ConsoleApp4
                     break;
                 }
             }
+
             if ((nota > 0) && (trobat))
             {
+                Console.WriteLine();
+                Console.WriteLine("-------Pagar-------");
                 Console.WriteLine($"El Menú us costarà: {nota}{Euro}");
+                //Aquí mirem quants bitllets necessitem per pagar
+                for (int i = 6; i >= 0; i--)
+                {
+                    if (ArrayMoneda[i] <= nota)
+                    {
+                        quants = Convert.ToInt32(nota) / ArrayMoneda[i];
+                        Console.WriteLine($"Necessiteu {quants} bitllet de {ArrayMoneda[i]}{Euro}");
+                        nota = nota - quants * ArrayMoneda[i];
+                    }
+                }
+                Console.WriteLine($"I {nota} monedes d'{Euro}");
+                Console.WriteLine("-------Pagar-------");
             }
         }
     }
