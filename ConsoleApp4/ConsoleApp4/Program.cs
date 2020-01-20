@@ -69,9 +69,38 @@ namespace ConsoleApp4
                 Console.WriteLine("Voleu afegir algún plat més? (1:Si / 0:No)");
                 prou = Convert.ToInt32(Console.ReadLine());
             }
+            Console.WriteLine("-------Tria-------");
             foreach (Tria p in listTria)
             {
                 Console.WriteLine(p.NomPlat);
+            }
+            Console.WriteLine("-------Tria-------");
+            //Fase 3
+            //Mirem si els plats escollits estàn al Menú i si hi són, calculem cost de la Nota
+            double nota = 0.0;
+            bool trobat = false;
+
+            foreach (Tria p in listTria)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    trobat = false;
+                    if (ArrayMenu[i] == p.NomPlat)
+                    {
+                        trobat = true;
+                        nota = nota + ArrayPreu[i];
+                        break;
+                    }
+                }
+                if (!trobat)
+                {
+                    Console.WriteLine($"El plat {p.NomPlat} no està al Menú");
+                    break;
+                }
+            }
+            if ((nota > 0) && (trobat))
+            {
+                Console.WriteLine($"El Menú us costarà: {nota}{Euro}");
             }
         }
     }
