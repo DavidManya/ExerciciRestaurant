@@ -96,13 +96,15 @@ namespace ConsoleApp4
                 }
                 if (!trobat)
                 {
+                    Console.WriteLine();
                     Console.WriteLine($"El plat {p.NomPlat} no està al Menú");
-                    break;
+                    //break;
                 }
             }
 
-            if ((nota > 0) && (trobat))
-            {
+            //if ((nota > 0) && (trobat))
+            if (nota > 0)
+                {
                 Console.WriteLine();
                 Console.WriteLine("-------Pagar-------");
                 Console.WriteLine($"El Menú us costarà: {nota}{Euro}");
